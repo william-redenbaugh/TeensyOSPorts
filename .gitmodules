@@ -1,0 +1,6 @@
+[submodule "STM32WillOSPort/lib/TeensyOS"]
+	path = STM32WillOSPort/lib/TeensyOS
+	url = https://github.com/william-redenbaugh/TeensyOS
+[submodule "Will-OSSTM32F4 Port/lib/TeensyOS"]
+	path = Will-OSSTM32F4 Port/lib/TeensyOS
+	url = https://github.com/william-redenbaugh/TeensyOS
