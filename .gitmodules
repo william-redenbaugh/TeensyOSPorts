@@ -4,3 +4,12 @@
 [submodule "Will-OSSTM32F4 Port/lib/TeensyOS"]
 	path = Will-OSSTM32F4 Port/lib/TeensyOS
 	url = https://github.com/william-redenbaugh/TeensyOS
+[submodule "Teensy4Port/lib/TeensyOS"]
+	path = Teensy4Port/lib/TeensyOS
+	url = git@github.com:william-redenbaugh/TeensyOS.git
+[submodule "Teensy4Port/lib/MAX7219_Dot_Matrix"]
+	path = Teensy4Port/lib/MAX7219_Dot_Matrix
+	url = git@github.com:SGBotic/MAX7219_Dot_Matrix.git
+[submodule "Teensy4Port/lib/Arduino-LiquidCrystal-I2C-library"]
+	path = Teensy4Port/lib/Arduino-LiquidCrystal-I2C-library
+	url = git@github.com:fdebrabander/Arduino-LiquidCrystal-I2C-library.git

@@ -19,9 +19,9 @@ void led_blink_thread_two(void *parameters){
 
   for(;;){
     digitalWrite(LED_D3, HIGH); 
-    os_thread_delay_ms(100); 
+    os_thread_delay_ms(1000); 
     digitalWrite(LED_D3, LOW); 
-    os_thread_delay_ms(100); 
+    os_thread_delay_ms(1000); 
   }
 }
 
