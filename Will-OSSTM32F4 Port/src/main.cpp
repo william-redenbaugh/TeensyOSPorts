@@ -6,9 +6,9 @@ void led_blink_thread(void *parameters){
 
   for(;;){
     digitalWrite(LED_BUILTIN, HIGH); 
-    os_thread_delay_ms(1000); 
+    os_thread_sleep_ms(1000); 
     digitalWrite(LED_BUILTIN, LOW); 
-    os_thread_delay_s(1); 
+    os_thread_sleep_ms(1000); 
   }
 }
 
@@ -35,8 +35,11 @@ void setup() {
   os_add_thread(led_blink_thread, NULL, sizeof(thread_stack), thread_stack);  
   os_add_thread(led_blink_thread_two, NULL, sizeof(thread_stack_two), thread_stack_two);  
 
+  a_function(); 
+
   // With the stm32, we don't currently use the primary thread. 
   _os_yield(); 
 }
+
 
 void loop() {}
