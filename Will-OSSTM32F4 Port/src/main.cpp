@@ -32,9 +32,8 @@ void setup() {
   os_init(); 
   // put your setup code here, to run once:
   pinMode(LED_BUILTIN, OUTPUT); 
- // os_add_thread(led_blink_thread, NULL, sizeof(thread_stack), thread_stack);  
+  os_add_thread(led_blink_thread, NULL, sizeof(thread_stack), thread_stack);  
   os_add_thread(led_blink_thread_two, NULL, sizeof(thread_stack_two), thread_stack_two);  
-
 
   // With the stm32, we don't currently use the primary thread. 
   _os_yield(); 
