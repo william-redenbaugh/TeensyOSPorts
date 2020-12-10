@@ -13,3 +13,6 @@
 [submodule "Teensy4Port/lib/Arduino-LiquidCrystal-I2C-library"]
 	path = Teensy4Port/lib/Arduino-LiquidCrystal-I2C-library
 	url = git@github.com:fdebrabander/Arduino-LiquidCrystal-I2C-library.git
+[submodule "STM32F3-Port/lib/TeensyOS"]
+	path = STM32F3-Port/lib/TeensyOS
+	url = git@github.com:william-redenbaugh/TeensyOS.git

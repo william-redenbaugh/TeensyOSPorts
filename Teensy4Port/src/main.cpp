@@ -1,29 +1,20 @@
 #include <Arduino.h>
 #include "OS/OSThreadKernel.h"
+#include "TeensyDebug.h"
 
-void led_thread(void *parameters){
-	for(;;){
-		os_thread_sleep_ms(1000);
-		digitalWrite(LED_BUILTIN, HIGH);
-		os_thread_sleep_ms(1000);
-		digitalWrite(LED_BUILTIN, LOW);
-	}
-}
-
-void another_led_thread(void *parameters){
-	for(;;){
-		
-	}
-}
+//
+// Either set debugging to O0 or mark the function
+// as DEBUGRUN. If you don't do this, the optimizer will
+// inline the function and you won't be able to set a
+// breakpoint.
+//
+#pragma GCC optimize ("O0")
 
 void setup() {
-	delay(2000);
-	os_init(); 
-	pinMode(LED_BUILTIN, OUTPUT);
-	os_add_thread(&another_led_thread, NULL, -1, NULL);
-	os_add_thread(&led_thread, NULL, -1, NULL); 
-	_os_yield();
+  delay(2000);
+  debug.begin(Serial); 
 }
 
 void loop() {
+  delay(1000);
 }
