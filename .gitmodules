@@ -16,3 +16,12 @@
 [submodule "STM32F3-Port/lib/TeensyOS"]
 	path = STM32F3-Port/lib/TeensyOS
 	url = git@github.com:william-redenbaugh/TeensyOS.git
+[submodule "STM32WillOSPort/lib/Adafruit_NeoPixel"]
+	path = STM32WillOSPort/lib/Adafruit_NeoPixel
+	url = git@github.com:adafruit/Adafruit_NeoPixel.git
+[submodule "STM32WillOSPort/lib/Adafruit_NeoMatrix"]
+	path = STM32WillOSPort/lib/Adafruit_NeoMatrix
+	url = git@github.com:adafruit/Adafruit_NeoMatrix.git
+[submodule "STM32WillOSPort/lib/Adafruit-GFX-Library"]
+	path = STM32WillOSPort/lib/Adafruit-GFX-Library
+	url = git@github.com:adafruit/Adafruit-GFX-Library.git

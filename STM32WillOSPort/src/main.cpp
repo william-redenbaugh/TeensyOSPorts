@@ -2,52 +2,61 @@
 #include "OS/OSThreadKernel.h"
 #include "DS_HELPER/priority_queue.hpp"
 
+#include <Adafruit_NeoPixel.h>
 
-void led_blink_thread(void *parameters){
-
-  for(;;){
-    digitalWrite(LED_BUILTIN, HIGH); 
-    os_thread_delay_s(1); 
-    digitalWrite(LED_BUILTIN, LOW); 
-    os_thread_delay_s(1); 
-  }
-}
-
-void led_blink_thread_two(void *parameters){
-  pinMode(LED_BLUE, OUTPUT); 
-
-  for(;;){
-    digitalWrite(LED_BLUE, HIGH); 
-    os_thread_delay_ms(100); 
-    digitalWrite(LED_BLUE, LOW); 
-    os_thread_delay_ms(100); 
-  }
-}
-
-void led_blink_thread_three(void *parameters){
-
-  for(;;){
-    _os_yield(); 
-  }
-}
 
 uint32_t thread_stack[4096]; 
-uint32_t thread_stack_two[4096]; 
-uint32_t thread_stack_three[4096]; 
+
+// Which pin on the Arduino is connected to the NeoPixels?
+#define PIN        PD7 // On Trinket or Gemma, suggest changing this to 1
+
+// How many NeoPixels are attached to the Arduino?
+#define NUMPIXELS 64 // Popular NeoPixel ring size
+
+// When setting up the NeoPixel library, we tell it how many pixels,
+// and which pin to use to send signals. Note that for older NeoPixel
+// strips you might need to change the third parameter -- see the
+// strandtest example for more information on possible values.
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+
+void led_blink_thread(void *parameters){
+  
+  pixels.begin();
+
+  while(1){
+    for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
+
+      // pixels.Color() takes RGB values, from 0,0,0 up to 255,255,255
+      // Here we're using a moderately bright green color:
+      pixels.setPixelColor(i, pixels.Color(0, 5, 0));
+
+      pixels.show();   // Send the updated pixel colors to the hardware.
+
+      os_thread_delay_ms(10);
+    } 
+
+    for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
+
+      // pixels.Color() takes RGB values, from 0,0,0 up to 255,255,255
+      // Here we're using a moderately bright green color:
+      pixels.setPixelColor(i, pixels.Color(0, 0, 0));
+
+      pixels.show();   // Send the updated pixel colors to the hardware.
+
+      os_thread_delay_ms(10);
+    } 
+
+  }
+}
 
 void setup() {
-
   os_init(); 
-  // put your setup code here, to run once:
-  pinMode(LED_BUILTIN, OUTPUT); 
-  os_add_thread(led_blink_thread, NULL, sizeof(thread_stack), thread_stack);  
-  os_add_thread(led_blink_thread_two, NULL, sizeof(thread_stack_two), thread_stack_two);  
-  os_add_thread(led_blink_thread_three, NULL, sizeof(thread_stack_three), thread_stack_three);  
-  
+  os_add_thread(led_blink_thread, NULL, sizeof(thread_stack), thread_stack);
   // With the stm32, we don't currently use the primary thread. 
-  stm32_os_start(); 
+  stm32_os_start();  
 }
 
 void loop() {  
-  // No point in putting anything here, since the program only runs on normal threads. 
+ 
 }
